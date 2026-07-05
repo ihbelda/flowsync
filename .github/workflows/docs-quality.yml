@@ -1,0 +1,70 @@
+name: Docs · Quality
+
+# Calidad de la documentación: linting de Markdown, enlaces rotos y prosa.
+on:
+  pull_request:
+    paths:
+      - 'docs/**'
+      - '**/*.md'
+      - '**/*.mdx'
+      - '.github/workflows/docs-quality.yml'
+  schedule:
+    # Chequeo semanal de enlaces (lunes 06:00 UTC) para detectar links caídos.
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  markdownlint:
+    # No aplica en el cron (solo linting en PRs).
+    if: github.event_name != 'schedule'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run markdownlint-cli2
+        uses: DavidAnson/markdownlint-cli2-action@v19
+        with:
+          globs: |
+            docs/**/*.md
+            *.md
+
+  links:
+    # Se ejecuta en PRs y en el cron semanal.
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check links with lychee
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --no-progress
+            --exclude-loopback
+            --exclude 'localhost'
+            --exclude 'example\.com'
+            --exclude 'INSERT-YOUR-LOG4BRAINS-URL'
+            docs/**/*.md
+            docs/**/*.mdx
+            *.md
+          fail: true
+
+  vale:
+    if: github.event_name != 'schedule'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Lint prose with Vale
+        uses: errata-ai/vale-action@reviewdog
+        with:
+          files: docs
+          fail_on_error: false
+          reporter: github-pr-check
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

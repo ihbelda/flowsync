@@ -1,0 +1,23 @@
+{
+  "name": "full-stack-adonisjs-master",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Starter kit full-stack con autenticación por access tokens. Repo hilo conductor del máster AI4Devs (LIDR). Monorepo con backend y frontend independientes.",
+  "scripts": {
+    "adr": "log4brains adr new",
+    "adr:list": "log4brains adr list",
+    "docs:adr:preview": "log4brains preview",
+    "docs:adr:build": "log4brains build"
+  },
+  "keywords": [
+    "adonisjs",
+    "ai4devs",
+    "adr",
+    "log4brains"
+  ],
+  "author": "",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "log4brains": "^1.1.0"
+  }
+}

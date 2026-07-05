@@ -1,0 +1,5 @@
+project:
+  name: FlowSync
+  tz: Europe/Madrid
+  adrFolder: ./docs/adr
+  packages: []

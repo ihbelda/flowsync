@@ -1,0 +1,50 @@
+# FlowSync
+
+> FlowSync es una app web de gestión de tareas personales que mantiene las tareas
+> sincronizadas con Google Calendar. Este repositorio es el starter kit full-stack
+> (monorepo AdonisJS 7 + React 19) usado como hilo conductor del máster AI4Devs (LIDR),
+> con autenticación por access tokens.
+
+**Stack técnico**
+
+- Backend: AdonisJS 7 (TypeScript), Lucid ORM + SQLite (`better-sqlite3`), VineJS
+  (validación de input), `@adonisjs/auth` con guard `api` (access tokens).
+- Frontend: React 19 + TypeScript, Vite, React Router, Tailwind CSS v4, shadcn/ui.
+- Documentación de API: OpenAPI generado con adonis-autoswagger, servido con Scalar
+  en `/docs` (`/openapi` para el JSON crudo).
+- Metodología: OpenSpec (spec-driven development), comandos `/opsx:propose`,
+  `/opsx:apply`, `/opsx:archive`.
+- Decisiones de arquitectura: ADRs gestionados con Log4brains.
+- Convención de commits: Conventional Commits.
+
+**Convenciones de naming y estructura**
+
+- La lógica de negocio vive siempre en controllers (`app/controllers/`);
+  `start/routes.ts` solo cablea rutas, sin lógica de negocio.
+- La validación de input se hace siempre con un validator de VineJS en
+  `app/validators/`.
+- La serialización de salida se hace siempre vía un transformer en
+  `app/transformers/` (p. ej. `UserTransformer`); nunca se devuelve el modelo
+  Lucid crudo en una respuesta.
+- Las rutas de la API viven bajo el prefijo `/api/v1`; las protegidas usan el
+  middleware `middleware.auth()`.
+- Los imports usan subpath imports (`#controllers/*`, `#models/*`,
+  `#validators/*`, `#transformers/*`, ...) en vez de rutas relativas.
+
+## Documentación
+
+- [README principal](README.md): arranque rápido, requisitos, endpoints y diagramas de arquitectura (C4 y secuencia)
+- [CLAUDE.md](CLAUDE.md): memoria del proyecto y convenciones para copilotos de IA
+- [PRD de FlowSync](docs/PRD.md): visión de producto, casos de uso y modelo de datos
+- [Índice de documentación](docs/README.md): guía de los documentos del producto
+- [ADRs (Log4brains)](docs/adr/index.md): registro de decisiones de arquitectura
+- [OpenSpec: configuración](openspec/config.yaml): contexto y convenciones del flujo spec-driven
+- [OpenSpec: spec de authentication](openspec/specs/authentication/spec.md)
+- [OpenSpec: spec de users](openspec/specs/users/spec.md)
+
+## Optional
+
+- [ADR: SQLite en lugar de PostgreSQL](docs/adr/20260703-use-sqlite-instead-of-postgresql.md)
+- [ADR: VineJS en lugar de Zod](docs/adr/20260703-use-vinejs-instead-of-zod.md)
+- [ADR: Log4brains para gestionar los ADRs](docs/adr/20260703-use-log4brains-to-manage-the-adrs.md)
+- [ADR: Markdown Architectural Decision Records](docs/adr/20260703-use-markdown-architectural-decision-records.md)
