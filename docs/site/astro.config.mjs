@@ -6,6 +6,8 @@ import { remarkStripAdrHeading } from './src/remark-strip-adr-heading.mjs';
 
 // https://astro.build/config
 export default defineConfig({
+	site: 'https://ihbelda.github.io',
+	base: '/flowsync',
 	markdown: {
 		processor: unified({ remarkPlugins: [remarkStripAdrHeading] }),
 	},
