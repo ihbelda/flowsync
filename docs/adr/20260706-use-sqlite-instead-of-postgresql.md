@@ -1,14 +1,18 @@
 # Use SQLite instead of PostgreSQL
 
 - Status: accepted
-- Date: 2026-07-03
+- Deciders: equipo FlowSync (máster AI4Devs)
+- Date: 2026-07-06
 - Tags: backend, database, infra
+
+Technical Story: Elección del motor de base de datos relacional para el backend de FlowSync.
 
 ## Context and Problem Statement
 
-FlowSync es la aplicación del máster AI4Devs. El proyecto necesita un motor de
-base de datos relacional para el backend en AdonisJS. ¿Qué motor de base de
-datos debemos usar para el desarrollo y funcionamiento de la aplicación?
+FlowSync es la aplicación del máster AI4Devs. El backend en AdonisJS 7
+necesita un motor de base de datos relacional para persistir sus datos, tanto
+en desarrollo local como en el entorno de la aplicación. ¿Qué motor de base
+de datos debemos usar?
 
 ## Decision Drivers
 
@@ -62,10 +66,7 @@ ORM lo soporta de forma nativa sin configuración extra.
 ### PostgreSQL
 
 - Good, porque soporta tipos de datos avanzados (arrays, `jsonb`, etc.).
-- Good, porque soporta escritura concurrente a escala y es apto para producción.
+- Good, porque soporta escritura concurrente a escala y es apto para
+  producción.
 - Bad, porque requiere levantar y mantener un servidor de base de datos, lo
   que añade overhead de infraestructura en desarrollo local.
-
-## Links
-
-- Relates to [Use Markdown Architectural Decision Records](20260703-use-markdown-architectural-decision-records.md)

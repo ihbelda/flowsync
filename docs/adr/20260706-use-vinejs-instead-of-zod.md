@@ -1,8 +1,11 @@
 # Use VineJS instead of Zod
 
 - Status: accepted
-- Date: 2026-07-03
+- Deciders: equipo FlowSync (máster AI4Devs)
+- Date: 2026-07-06
 - Tags: backend, validation
+
+Technical Story: Elección de la librería de validación de datos de entrada para el backend de FlowSync.
 
 ## Context and Problem Statement
 
@@ -61,7 +64,3 @@ manuales para cubrir esa misma integración.
 - Good, porque permite compartir schemas entre backend y frontend.
 - Bad, porque habría requerido adaptadores manuales para integrarse con
   AdonisJS y Lucid, sin soporte nativo de reglas como `unique` o `exists`.
-
-## Links
-
-- Relates to [Use Markdown Architectural Decision Records](20260703-use-markdown-architectural-decision-records.md)
