@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - "docs/**"
+      - "backend/**"
       - ".github/workflows/docs.yml"
   workflow_dispatch:
 
@@ -20,9 +21,6 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: docs/site
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -32,12 +30,23 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: docs/site/package-lock.json
+          cache-dependency-path: |
+            backend/package-lock.json
+            docs/site/package-lock.json
 
-      - name: Install dependencies
+      - name: Install backend dependencies
+        working-directory: backend
         run: npm ci
 
+      - name: Install docs site dependencies
+        working-directory: docs/site
+        run: npm ci
+
+      # `npm run build` dispara antes el hook `prebuild`, que arranca el
+      # backend real (ver docs/site/scripts/generate-openapi.sh) para
+      # generar docs/site/openapi.yaml y alimentar la referencia de la API.
       - name: Build site
+        working-directory: docs/site
         run: npm run build
 
       - name: Upload Pages artifact
