@@ -5,7 +5,8 @@
 - Date: 2026-07-06
 - Tags: backend, validation
 
-Technical Story: Elección de la librería de validación de datos de entrada para el backend de FlowSync.
+Technical Story: Elección de la librería de validación de datos de entrada
+para el backend de FlowSync.
 
 ## Context and Problem Statement
 

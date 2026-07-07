@@ -5,7 +5,8 @@
 - Date: 2026-07-06
 - Tags: backend, database, infra
 
-Technical Story: Elección del motor de base de datos relacional para el backend de FlowSync.
+Technical Story: Elección del motor de base de datos relacional para el
+backend de FlowSync.
 
 ## Context and Problem Statement
 
