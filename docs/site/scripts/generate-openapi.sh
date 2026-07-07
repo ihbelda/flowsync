@@ -46,3 +46,5 @@ fi
 
 curl -sf "$OPENAPI_URL" -o "$OUT_FILE"
 echo "openapi.yaml generado en $OUT_FILE ($(wc -c < "$OUT_FILE") bytes)"
+
+node "$SITE_ROOT/scripts/patch-openapi.mjs"
