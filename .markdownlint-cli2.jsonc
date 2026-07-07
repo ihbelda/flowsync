@@ -1,0 +1,14 @@
+{
+  "config": {
+    "default": true,
+    // La documentación (PRD, notas del formador, ADRs) usa párrafos largos
+    // en prosa sin wrap manual a 80 columnas; forzar MD013 aquí solo genera
+    // ruido sin valor real.
+    "MD013": false
+  },
+  "ignores": [
+    // Documento canónico del máster: no se debe modificar ni siquiera por
+    // formato (ver docs/NOTAS-FORMADOR.md, sección "Qué NO hacer").
+    "docs/PRD.md"
+  ]
+}
